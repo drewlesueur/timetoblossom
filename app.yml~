@@ -1,0 +1,8 @@
+application: clstff
+version: timetoblossom
+runtime: python
+api_version: 1
+ 
+handlers:
+- url: /.*
+  script: main.py
