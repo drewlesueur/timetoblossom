@@ -1,0 +1,191 @@
+<table>  
+<tr> 
+    <td>First Name<td> 
+    <td><input type="text" name="first"></td> 
+</tr> 
+ 
+<tr> 
+    <td>Last Name<td> 
+    <td><input type="text" name="last"></td> 
+</tr> 
+ 
+<tr> 
+    <td>Preferred Name (This name will appear on name-tag):<td> 
+    <td><input type="text" name="name"></td> 
+</tr> 
+ 
+<tr> 
+    <td>Date of Birth<td> 
+    <td>
+        <input type="text" name="dob">
+        <div>Girls who have not yet turned 17 and girls turning 12. by December 31, 2010</div>        
+    </td> 
+</tr> 
+ 
+<tr> 
+    <td>Street Address<td> 
+    <td><input type="text" name="address"></td> 
+</tr> 
+ 
+<tr> 
+    <td>City<td> 
+    <td><input type="text" name="city"></td> 
+</tr> 
+ 
+<tr> 
+    <td>State<td> 
+    <td><input type="text" name="state"></td> 
+</tr> 
+ 
+<tr> 
+    <td>Zip Code<td> 
+    <td><input type="text" name="zip"></td> 
+</tr> 
+ 
+<tr> 
+    <td>Country<td> 
+    <td><input type="text" name="country"></td> 
+</tr> 
+ 
+<tr> 
+    <td>Cell Phone<td> 
+    <td><input type="text" name="cell"></td> 
+</tr> 
+ 
+<tr> 
+    <td>Home Phone<td> 
+    <td><input type="text" name="home"></td> 
+</tr> 
+ 
+<tr> 
+    <td>Email Address<td> 
+    <td><input type="text" name="email"></td> 
+</tr> 
+ 
+<tr> 
+    <td>T-Shirt Size<td> 
+    <td><input type="text" name="t_shirt_size"></td> 
+</tr> 
+ 
+<tr>
+    <td colspan="2">
+        Four Girls Per Room.....
+    </td>
+</tr>
+<tr> 
+    <td>Roomate First Name <td> 
+    <td><input type="text" name="roomate_first_1"></td> 
+</tr> 
+ 
+<tr> 
+    <td>Roomate Last Name <td> 
+    <td><input type="text" name="roomate_last_1"></td> 
+</tr> 
+ 
+<tr> 
+    <td>Roomate First Name  <td> 
+    <td><input type="text" name="roomate_first_2"></td> 
+</tr> 
+ 
+<tr> 
+    <td>Roomate Last Name  <td> 
+    <td><input type="text" name="roomate_last_2"></td> 
+</tr> 
+ 
+<tr> 
+    <td>Roomate First Name   <td> 
+    <td><input type="text" name="roomate_first_3"></td> 
+</tr> 
+ 
+<tr> 
+    <td>Roomate Last Name   <td> 
+    <td><input type="text" name="roomate_last_3"></td> 
+</tr> 
+ 
+<tr>
+    <td colspan="2"></td>
+</tr>
+<tr> 
+    <td>First Name<td> 
+    <td><input type="text" name="parent_first"></td> 
+</tr> 
+ 
+<tr> 
+    <td>Last Name<td> 
+    <td><input type="text" name="parent_last"></td> 
+</tr> 
+ 
+<tr> 
+    <td>Email Address<td> 
+    <td><input type="text" name="parent_email"></td> 
+</tr> 
+ 
+<tr> 
+    <td>Cell Phone<td> 
+    <td><input type="text" name="parent_cell"></td> 
+</tr> 
+ 
+<tr> 
+    <td>Home Phone<td> 
+    <td><input type="text" name="parent_home"></td> 
+</tr> 
+<tr>    
+    <td colspan="2">I approve of my ....</td>
+</tr>
+<tr>
+    <td colspan="2">Please describe any special physical, emotional</td>
+    <td colspan="2">
+        <textarea name = "limitations"></textarea>    
+    </td>
+</tr>
+<tr>
+    <td colspan="2">Please list any required medication:</td>
+    <td colspan="2">
+        <textarea name = "medication"></textarea>    
+    </td>
+</tr>
+<tr>
+    <td colspan="2">Please list any known food, drug, or other allergies:</td>
+    <td colspan="2">
+        <textarea name = "allergies"></textarea>    
+    </td>
+</tr>
+<tr>
+    <td colspan="2">Please describe any special physical, emotional</td>    
+</tr>
+<tr>
+    <td colspan="2"><b>Medical Release:</b> This release</td>    
+</tr>
+
+<tr> 
+    <td>Emergency Contact Name<td> 
+    <td><input type="text" name="emergency_name"></td> 
+</tr> 
+ 
+<tr> 
+    <td>Emergency Contact Phone Number<td> 
+    <td><input type="text" name="emergency_number"></td> 
+</tr> 
+ 
+<tr> 
+    <td>Health/Medical Insurance Company<td> 
+    <td><input type="text" name="ins_co"></td> 
+</tr> 
+ 
+<tr> 
+    <td>Policy Number<td> 
+    <td><input type="text" name="policy_number"></td> 
+</tr>
+<tr>
+    <td colspan="2"><b>Medical Treatment Consent:</b></td>    
+</tr>
+<tr>
+    <td colspan="2">I,_______</td>    
+</tr>
+<tr>
+    <td colspan="2">CANCELLATION POLICY:</td>    
+</tr>
+
+
+
+</table>

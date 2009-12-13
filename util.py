@@ -10,6 +10,23 @@ def stringObj(obj, st):
     else:
         return stringObj(obj, st)
 
+
+def make_form(arr):
+    ret = """
+<table>
+"""    
+    for i in arr:
+        ret += """
+<tr>
+    <td>""" + i[0] + """<td>
+    <td><input type="text" name=\""""+ i[1] +"""\"></td>
+</tr>
+"""
+    ret += "</table>"
+    return ret
+
+
+
 """
 class T:
     a = "4"
