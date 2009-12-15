@@ -1,6 +1,8 @@
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script> 
-<form method="post" action = "http://timetoblossom.latest.clstff.appspot.com">
-<table cellpadding = "10" style = "table-layout:fixed; width: 800px;" >  
+import simplejson
+
+def just_form():
+    return """<form method="post" action = "http://timetoblossom.latest.clstff.appspot.com">
+<table cellpadding = "10" style = "table-layout:fixed; width: 500px;" >  
 <tr>
     <td style="width:200px"></td>
     <td></td>
@@ -220,6 +222,7 @@ I understand that participants will be sent home if any drugs, alcohol, or cigar
     <td>Our closing event will be Friday from 11:00 to 11:45 AM to share our weeklong experiences.  Please indicate the number of guests (0-4) who will be attending this closing event: </td>    
     <td>
         <select name = "guests_closing">
+            <option value="0">0</option>             
             <option value="1">1</option>        
             <option value="2">2</option>        
             <option value="3">3</option>        
@@ -236,6 +239,34 @@ I understand that participants will be sent home if any drugs, alcohol, or cigar
 
 
 </table>
+<input type="submit" value="Submit">
+"""
 
-<input type = "submit" value = "Submit">
-</form>
+
+def form(row):
+    return """<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
+<script src="http://gist.github.com/raw/256759/15a5ba42e7f70bbc7c459064501cb964c706de99/jquery-json.js"></script>""" + just_form() + """<input type = "submit" value = "Submit">
+</form>""" + "<div id = 'row' style='display:none;'>" + simplejson.dumps(row, indent = 4) + "</div>" + """
+<script>
+$(document).ready(function(){
+    var info = $('#row').html()
+    info = $.evalJSON(info)
+    for (var i in info) {
+        var field = $('[name="'+i+'"]')        
+        if (field.length > 0) {
+            $('[name="'+i+'"]').val(info[i])
+        }    
+    }
+    
+    var checks = ["approve","agree_cancellation"]
+    for (var i in checks) {
+        if (checks[i] in info) {
+            $('[name="'+ checks[i] +'"]').attr('checked',true)        
+        }
+    }
+})
+</script>
+
+
+"""
+

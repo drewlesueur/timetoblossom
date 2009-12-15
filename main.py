@@ -5,77 +5,72 @@ import myweb
 import pages
 import free_email
 import util
+from google.appengine.api import datastore
+from datetime import datetime
 
+class Test(webapp.RequestHandler):
+    def get(self):
+        import os
+        for i in os.environ:
+            self.response.out.write(i + ":" + os.environ[i] + "\n")
+class Form(webapp.RequestHandler):
+    def get(self, the_key):
+        import form
+        record = datastore.Get(the_key)
+        self.response.out.write(form.form(record))
 class View(webapp.RequestHandler):
     def get(self):
-        query = Registrant.all()
-        registrants = query.fetch(999) #you can only have 999 results at once. todo: fix this
-        self.response.out.write(pages.view(registrants))
-           
-class Help(webapp.RequestHandler):
-    def get(self):
-        form1 = [
-            ['First Name' , 'first'],
-            ['Last Name' , 'last'],
-            ['Preferred Name (This name will appear on name-tag):' , 'name'],
-            ['Date of Birth' , 'dob'],
-            ['Street Address' , 'address'],
-            ['City' , 'city'],
-            ['State' , 'state'],
-            ['Zip Code' , 'zip'],
-            ['Country' , 'country'],
-            ['Cell Phone' , 'cell'],
-            ['Home Phone' , 'home'],
-            ['Email Address' , 'email'],
-            ['T-Shirt Size' , 't_shirt_size'],
-            ['Roomate First Name ' , 'roomate_first_1'],
-            ['Roomate Last Name ' , 'roomate_last_1'],
-            ['Roomate First Name  ' , 'roomate_first_2'],
-            ['Roomate Last Name  ' , 'roomate_last_2'],
-            ['Roomate First Name   ' , 'roomate_first_3'],
-            ['Roomate Last Name   ' , 'roomate_last_3'],       	    
-            ['First Name' , 'parent_first'],
-            ['Last Name' , 'parent_last'],
-            ['Email Address' , 'parent_email'],
-            ['Cell Phone' , 'parent_cell'],
-            ['Home Phone' , 'parent_home'],
-            ['Emergency Contact Name' , 'emergency_name'],
-            ['Emergency Contact Phone Number' , 'emergency_number'],
-            ['Health/Medical Insurance Company' , 'ins_co'],
-            ['Policy Number' , 'policy_number']            
-        ]
-        self.response.out.write(util.make_form(form1))
+        query = datastore.Query("registrant")
+        query.Order('created')
+        records = query.Get(999)
+        self.response.out.write(pages.view(records))
+        #self.response.out.write(str(records))
+
+class IPN(webapp.RequestHandler):
+    pass
+
+class Pay():
+    pass
        
-        
 class MainPage(webapp.RequestHandler):
-    email = "drewalex@gmail.com"
-    paypal = "http://google.com"
+    email = "carla@timetoblossom.com, drewalex@gmail.com"
+    #paypal = "http://google.com"
     def get(self):
-        self.response.headers['Content-Type'] = 'text/html'
-        self.response.out.write('Hello, webapp World!')
-        self.response.out.write(pages.test_form())
+        import form
+        #self.response.headers['Content-Type'] = 'text/html'
+        #self.response.out.write('Hello, webapp World!')
+        self.response.out.write(form.just_form())        
+        #self.response.out.write(pages.test_form())
     def post(self):
         posts = myweb.get_post_vars()
+        posts['created'] = str(datetime.now())
         registrant = Registrant()
-        for i in posts:
-            setattr(registrant, i, posts[i])
-            #self.response.out.write(i + ":" + posts[i] + "<br>")
-        registrant.put()
-        mailed = free_email.email(self.email, self.email, "New Registrant for timetoblossom",util.stringObj(registrant, """
-New registrant
-Name: {{first}} {{last}}
-Email: {{email}}
-"""))        
+        obj = datastore.Entity(kind = "registrant")
+        obj.update(posts) 
+        datastore.Put(obj) #also could put a list of objs #what if this fails
+        #self.response.out.write(obj.key())
+        
+        mailed = free_email.email(self.email, "drewalex@gmail.com", "New Registrant for timetoblossom", """
+Timetoblossom.com
+New Registrant
+""" + obj['first'] + " " + obj['last'] + """ registered
+See details at
+http://timetoblossom.latest.clstff.appspot.com/view
+""")        
         if mailed == True:
-            self.redirect(self.paypal)
+            self.redirect("http://www.timetoblossom.com/pages/pay.htm")
         else:
-            self.response.out.write("Sorry, something went wrong, please hit back and try again.")
+            self.redirect("http://www.timetoblossom.com/pages/pay.htm")
+            #self.response.out.write("Sorry, something went wrong, please hit back and try again.")
         
 
 application = webapp.WSGIApplication(
                                      [('/', MainPage),
                                       ('/view', View),
-                                      ('/help', Help)],
+                                      ('/ipn', IPN),
+                                      (r'/form/(.*)$', Form),
+                                      #(r'/pay/(.*)$)',Pay),
+                                      ('/test',Test)],
                                      debug=True)
 
 def main():

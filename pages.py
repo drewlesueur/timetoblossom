@@ -1,20 +1,12 @@
-def test_form():
-    return """
-test form
-<form action='/' method="POST">
-first: <input type = "text" name = "first"><br />
-last: <input type = "text" name = "last"><br />
-email: <input type = "text" name = "email"><br />
-<input type = "submit" value="send">
-</form>
 
 
-"""
-
-def view(registrants):
-    ret = ""
-    for registrant in registrants:
-        ret = ret + "name: " + str(registrant.first) + " " + str(registrant.last) + "<br />"
-        ret = ret + "email: " + str(registrant.email) + "<br />"
-        ret += "<hr/ >"
-    return ret
+def view(records):
+    ret = ["<table border = '1'>"]
+    for record in records:
+        #for item in record:
+            #ret.append(str(item) + ": " + str(record[item]) + "\n<br />")
+        ret.append("<tr>")
+        ret.append("<td>" + str(record['first']) + " " + str(record['last']) + "</td>")
+        ret.append("<td><a href='form/"+ str(record.key()) +"'>View submission</a></td>")
+        ret.append("</tr>")
+    return "".join(ret)

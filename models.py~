@@ -1,6 +1,9 @@
 from google.appengine.ext import db
 
+#todo: make a form that will take any number of fields
+#thats the beauty of app engine!!!
 class Registrant(db.Model):
     first = db.StringProperty()
     last = db.StringProperty()
-    email = db.emailProperty()
+    email = db.StringProperty()
+    
