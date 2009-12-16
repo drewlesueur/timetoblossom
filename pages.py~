@@ -1,13 +1,4 @@
-def test_form():
-    return """
-test form
-<form action='/' method="POST">
-first: <input type = "text" name = "first"><br />
-last: <input type = "text" name = "last"><br />
-email: <input type = "text" name = "email"><br />
-<input type = "submit" value="send">
-</form>
-"""
+
 
 def view(records):
     ret = ["<table border = '1'>"]

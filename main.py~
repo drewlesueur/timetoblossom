@@ -50,7 +50,7 @@ class MainPage(webapp.RequestHandler):
         datastore.Put(obj) #also could put a list of objs #what if this fails
         #self.response.out.write(obj.key())
         
-        mailed = free_email.email(self.email, self.email, "New Registrant for timetoblossom", """
+        mailed = free_email.email(self.email, "drewalex@gmail.com", "New Registrant for timetoblossom", """
 Timetoblossom.com
 New Registrant
 """ + obj['first'] + " " + obj['last'] + """ registered
