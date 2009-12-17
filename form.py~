@@ -260,8 +260,8 @@ $(document).ready(function(){
     
     var checks = ["approve","agree_cancellation"]
     for (var i in checks) {
-        if (i in info) {
-            $('[name="'+ i +'"]').attr('checked',true)        
+        if (checks[i] in info) {
+            $('[name="'+ checks[i] +'"]').attr('checked',true)        
         }
     }
 })

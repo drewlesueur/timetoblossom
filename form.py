@@ -1,7 +1,7 @@
 import simplejson
 
 def just_form():
-    return """<form method="post" action = "http://timetoblossom.latest.clstff.appspot.com">
+    return """<form method="post" action = "/">
 <table cellpadding = "10" style = "table-layout:fixed; width: 500px;" >  
 <tr>
     <td style="width:200px"></td>

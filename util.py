@@ -1,4 +1,34 @@
-import re
+#import re
+
+from google.appengine.api import datastore
+from datetime import datetime
+def start_session(obj):
+    ssid = obj.request.cookies.get('ssid', None)
+    if ssid:
+        return ssid        
+        #obj.response.headers.add_header('Set-Cookie', 'ssid=%s' % urllib.urlencode(auth_save))
+    else:
+        session = datastore.Entity(kind = "session")
+        session['created'] = str(datetime.now())
+        datastore.Put(session)
+        ssid = session.key()
+        obj.response.headers.add_header('Set-Cookie', 'ssid=%s' % ssid)
+        return ssid
+
+def put_session(obj,vals):
+    ssid = start_session(obj)
+    session = datastore.Get(ssid)
+    session.update(vals)
+    datastore.Put(session)
+    return
+
+def get_session(obj):
+    ssid = start_session(obj)
+    session = datastore.Get(ssid)
+    return session
+    
+def clear_session(obj):
+     obj.response.headers.add_header('Set-Cookie', 'ssid=; expires=Wed, 11-Sep-1985 11:00:00 GMT')
 
 def stringObj(obj, st):
     """string formating stuff """
