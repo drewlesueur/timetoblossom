@@ -25,7 +25,21 @@ class Form(webapp.RequestHandler):
                 self.response.out.write(form.form(record))
             else:
                 self.redirect('/')
-        
+      
+
+
+class CSV(webapp.RequestHandler):
+    def get(self):
+        user = access.wall(self)
+        if user:
+            if (user.nickname() in settings.admins):        
+                query = datastore.Query("registrant")
+                query.Order('created')
+                records = query.Get(999)
+                self.response.headers.add_header("Content-Type", 'text/csv')
+                self.response.out.write(pages.csv(records))
+                #self.response.out.write(str(records))
+  
 class View(webapp.RequestHandler):
     def get(self):
         user = access.wall(self)
@@ -90,7 +104,7 @@ class MainPage(webapp.RequestHandler):
         if 'os0' in obj: # os0 is wether it's half or full payment
             pass
         else:
-            obj['os0'] = 'Half Payment'
+            obj['os0'] = 'Full Payment'
         datastore.Put(obj) #also could put a list of objs #what if this fails
         #self.response.out.write(obj.key())
         util.put_session(self,{'email': posts['email'], 'key':obj.key(), 'payment' : obj['os0']}) #saving some cookies, key is most important others save lines of code
@@ -114,6 +128,7 @@ http://timetoblossom.latest.clstff.appspot.com/view
 application = webapp.WSGIApplication(
                                      [('/', MainPage),
                                       ('/view', View),
+                                      ('/csv', CSV),
                                       ('/ipn', IPN),
                                       (r'/form/(.*)$', Form),
                                       #(r'/pay/(.*)$)',Pay),

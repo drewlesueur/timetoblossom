@@ -60,10 +60,15 @@ def buy_now(payment):
 """
     return ret
 
+def csv(records):
+    import util
+    return util.array_to_csv(records)
+
 def view(records):
     import access
     ret = []
     ret.append(access.logout_link())
+    ret.append(" <a href='/csv.csv'>download csv</a>")
     ret.append("<table border = '1'>")
     ret.append("<tr><th>Name</th><th>Date</th><th>Email Sent?</th><th>View</th></tr>")
     for record in records:

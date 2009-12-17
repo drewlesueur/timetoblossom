@@ -16,14 +16,14 @@ def start_session(obj):
         return ssid
 
 def put_session(obj,vals):
-    ssid = get_session(obj)
+    ssid = start_session(obj)
     session = datastore.Get(ssid)
     session.update(vals)
     datastore.Put(session)
     return
 
 def get_session(obj):
-    ssid = get_session(obj)
+    ssid = start_session(obj)
     session = datastore.Get(ssid)
     return session
     
@@ -39,6 +39,31 @@ def stringObj(obj, st):
         return st
     else:
         return stringObj(obj, st)
+
+
+def array_to_csv(objs):
+    keys = []
+    ret = []
+    for obj in objs:
+        for key in obj:
+            if key not in keys:
+                keys.append(key)
+    for key in keys:
+        ret.append('"' + key + '"')
+        ret.append(', ')
+    ret = ret[0:-1]
+    ret.append("\r\n")
+    
+    for obj in obj:
+        for key in keys:
+            if key in obj:
+                ret.append('"' + obj[key] + '"')
+            else:
+                ret.append('""')
+            ret.append(', ')
+        ret = ret[0:-1]
+        ret.append("\r\n")
+    return "".join(ret)
 
 
 def make_form(arr):

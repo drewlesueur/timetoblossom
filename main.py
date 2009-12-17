@@ -25,7 +25,21 @@ class Form(webapp.RequestHandler):
                 self.response.out.write(form.form(record))
             else:
                 self.redirect('/')
-        
+      
+
+
+class CSV(webapp.RequestHandler):
+    def get(self):
+        user = access.wall(self)
+        if user:
+            if (user.nickname() in settings.admins):        
+                query = datastore.Query("registrant")
+                query.Order('created')
+                records = query.Get(999)
+                self.response.headers.add_header("Content-Type", 'text/csv')
+                self.response.out.write(pages.csv(records))
+                #self.response.out.write(str(records))
+  
 class View(webapp.RequestHandler):
     def get(self):
         user = access.wall(self)
@@ -114,6 +128,7 @@ http://timetoblossom.latest.clstff.appspot.com/view
 application = webapp.WSGIApplication(
                                      [('/', MainPage),
                                       ('/view', View),
+                                      ('/csv.csv', CSV),
                                       ('/ipn', IPN),
                                       (r'/form/(.*)$', Form),
                                       #(r'/pay/(.*)$)',Pay),

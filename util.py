@@ -41,6 +41,31 @@ def stringObj(obj, st):
         return stringObj(obj, st)
 
 
+def array_to_csv(objs):
+    keys = []
+    ret = []
+    for obj in objs:
+        for key in obj:
+            if key not in keys:
+                keys.append(key)
+    for key in keys:
+        ret.append('"' + key + '"')
+        ret.append(', ')
+    ret = ret[0:-1]
+    ret.append("\r\n")
+    
+    for obj in objs:
+        for key in keys:
+            if key in obj:
+                ret.append('"' + obj[key] + '"')
+            else:
+                ret.append('""')
+            ret.append(', ')
+        ret = ret[0:-1]
+        ret.append("\r\n")
+    return "".join(ret)
+
+
 def make_form(arr):
     ret = """
 <table>
