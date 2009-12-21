@@ -17,16 +17,21 @@ def start_session(obj):
 
 def put_session(obj,vals):
     ssid = start_session(obj)
-    session = datastore.Get(ssid)
-    session.update(vals)
-    datastore.Put(session)
+    try:
+        session = datastore.Get(ssid)
+        session.update(vals)
+        datastore.Put(session)
+    except:
+        pass
     return
 
 def get_session(obj):
-    ssid = start_session(obj)
-    session = datastore.Get(ssid)
-    return session
-    
+    try:
+        ssid = start_session(obj)
+        session = datastore.Get(ssid)
+        return session
+    except:
+        return []
 def clear_session(obj):
      obj.response.headers.add_header('Set-Cookie', 'ssid=; expires=Wed, 11-Sep-1985 11:00:00 GMT')
 
@@ -40,6 +45,17 @@ def stringObj(obj, st):
     else:
         return stringObj(obj, st)
 
+def str_csv(text):
+    if '"' in text or "," in text or "\r" in text or "\n" in text:
+        #text = text.replace('"', '""')        
+        text = text.replace('"', "[quote]")
+        text = text.replace("\r", "[return]")
+        text = text.replace("\n", "[return]")
+        text = text.replace(",", "[comma]")
+        return '"' + text + '"'
+    else:
+        return text
+    
 
 def array_to_csv(objs):
     keys = []
@@ -49,7 +65,7 @@ def array_to_csv(objs):
             if key not in keys:
                 keys.append(key)
     for key in keys:
-        ret.append('"' + key + '"')
+        ret.append(str_csv(key))
         ret.append(', ')
     ret = ret[0:-1]
     ret.append("\r\n")
@@ -57,7 +73,7 @@ def array_to_csv(objs):
     for obj in objs:
         for key in keys:
             if key in obj:
-                ret.append('"' + obj[key] + '"')
+                ret.append(str_csv(obj[key]))
             else:
                 ret.append('""')
             ret.append(', ')

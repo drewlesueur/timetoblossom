@@ -128,7 +128,7 @@ http://timetoblossom.latest.clstff.appspot.com/view
 application = webapp.WSGIApplication(
                                      [('/', MainPage),
                                       ('/view', View),
-                                      ('/csv', CSV),
+                                      ('/csv.csv', CSV),
                                       ('/ipn', IPN),
                                       (r'/form/(.*)$', Form),
                                       #(r'/pay/(.*)$)',Pay),

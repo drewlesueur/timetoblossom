@@ -36,7 +36,8 @@ class CSV(webapp.RequestHandler):
                 query = datastore.Query("registrant")
                 query.Order('created')
                 records = query.Get(999)
-                self.response.headers.add_header("Content-Type", 'text/csv')
+                #self.response.headers.add_header("Content-Type", 'text/csv')
+                self.response.headers.add_header("Content-Disposition", "attachment; filename=csv.csv")
                 self.response.out.write(pages.csv(records))
                 #self.response.out.write(str(records))
   
