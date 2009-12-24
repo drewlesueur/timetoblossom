@@ -1,6 +1,6 @@
 from_email = "carla@timetoblossom.com"
 to_email = "carla@timetoblossom.com" #add carla!
-admins = ['drewalex', 'carlajorgensen']
+admins = ['drewalex', 'carlajorgensen', 'debbie4est']
 thank_you_subject = "Thank you for signing up for Time to Blossom Young Women's Conference"
 
 thank_you_body = """Thank you for signing up for Time to Blossom Young Women's Conference.

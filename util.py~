@@ -48,14 +48,30 @@ def stringObj(obj, st):
 def str_csv(text):
     if '"' in text or "," in text or "\r" in text or "\n" in text:
         #text = text.replace('"', '""')        
-        text = text.replace('"', " ")
-        text = text.replace("\r", " ")
-        text = text.replace("\n", " ")
-        text = text.replace(",", " ")
+        text = text.replace('"', "[quote]")
+        text = text.replace("\r", "[return]")
+        text = text.replace("\n", "[return]")
+        text = text.replace(",", "[comma]")
         return '"' + text + '"'
     else:
         return text
     
+
+def array_to_xls(objs, headings):
+    import cgi
+    ret = ["<table><tr>"]
+    for x in headings:
+        ret.append("<td>" + x + "</td>")
+    ret.append("</tr>")
+    for obj in objs:
+        ret.append("<tr>")
+        for heading in headings:
+            ret.append("<td>" + cgi.escape(obj[heading]) + "</td>")
+        ret.append("</tr>")
+    ret.append("</table>")
+    return "".join(ret)
+            
+        
 
 def array_to_csv(objs):
     keys = []

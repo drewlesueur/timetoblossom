@@ -57,6 +57,22 @@ def str_csv(text):
         return text
     
 
+def array_to_xls(objs, headings):
+    import cgi
+    ret = ["<table><tr>"]
+    for x in headings:
+        ret.append("<td>" + x + "</td>")
+    ret.append("</tr>")
+    for obj in objs:
+        ret.append("<tr>")
+        for heading in headings:
+            ret.append("<td>" + cgi.escape(obj[heading]) + "</td>")
+        ret.append("</tr>")
+    ret.append("</table>")
+    return "".join(ret)
+            
+        
+
 def array_to_csv(objs):
     keys = []
     ret = []
