@@ -119,13 +119,12 @@ http://timetoblossom.latest.clstff.appspot.com/view
 """)        
         if mailed == True:
             obj['email_sent_to_carla'] = "yes"            
-            #self.redirect("http://www.timetoblossom.com/pages/pay.htm")
         else:
-            obj['email_sent_to_carla'] = "no"            
-            #self.redirect("http://www.timetoblossom.com/pages/pay.htm")
+            obj['email_sent_to_carla'] = "no"
             #self.response.out.write("Sorry, something went wrong, please hit back and try again.")
         datastore.Put(obj) #save the email info
-        self.redirect("/paypal_submit")
+        #self.redirect("/paypal_submit") #this also works
+        self.redirect("http://www.timetoblossom.com/pages/pay.htm")
 application = webapp.WSGIApplication(
                                      [('/', MainPage),
                                       ('/view', View),

@@ -4,8 +4,14 @@ def buy_now_test():
 <head></head>
 <body>
     <img src="http://www.timetoblossom.com/images/timetoblossom_99.gif" />
-    <a href="http://www.timetoblossom.com/pages/pay.htm">Redirecting to PayPal</a>
-    <form id = 'f' style = 'display:none;' action="https://www.paypal.com/cgi-bin/webscr" method="post">
+
+<div>
+    If you would like to pay by check:  Make it payable to Time to Blossom and mail to
+<blockquote>Time to Blossom 2251 N. 32nd St. #17 <br /> Mesa Az. 85213 </blockquote>
+    If you would like to pay by credit card or paypal hit this button
+</div>
+   <!-- <a href="http://www.timetoblossom.com/pages/pay.htm">Redirecting to PayPal</a>-->
+    <form id = 'f' style = '' action="https://www.paypal.com/cgi-bin/webscr" method="post">
     <input type="hidden" name="cmd" value="_s-xclick">
     <input type="hidden" name="hosted_button_id" value="10494358">
     <input type="image" src="https://www.paypal.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
@@ -13,7 +19,8 @@ def buy_now_test():
     </form>
 
     <script>
-        document.getElementById('f').submit();
+        //uncomment if you want to automatically submit
+        //document.getElementById('f').submit();
     </script>
 </body>
 </html>
@@ -37,8 +44,13 @@ def buy_now(payment):
 <head></head>
 <body>
     <img src="http://www.timetoblossom.com/images/timetoblossom_99.gif" />
-    <a href="http://www.timetoblossom.com/pages/pay.htm">Redirecting to PayPal</a>
-    <form style = "display:none;" id = 'f' action="https://www.paypal.com/cgi-bin/webscr" method="post">
+    <div>
+        If you would like to pay by check:  Make it payable to Time to Blossom and mail to
+        <blockquote>Time to Blossom 2251 N. 32nd St. #17 <br /> Mesa Az. 85213 </blockquote>
+        If you would like to pay by credit card or paypal hit this button
+    </div>
+    <!--<a href="http://www.timetoblossom.com/pages/pay.htm">Redirecting to PayPal</a>-->
+    <form style = "" id = 'f' action="https://www.paypal.com/cgi-bin/webscr" method="post">
     <input type="hidden" name="cmd" value="_s-xclick">
     <input type="hidden" name="hosted_button_id" value="10385280">
     <table>
@@ -53,7 +65,7 @@ def buy_now(payment):
     <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
     </form>
     <script>
-        document.getElementById('f').submit();
+        //document.getElementById('f').submit();
     </script>
 </body>
 </html>
