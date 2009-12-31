@@ -89,6 +89,10 @@ def view(records):
         #for item in record:
             #ret.append(str(item) + ": " + str(record[item]) + "\n<br />")
         record.setdefault('email_sent', 'no')
+        record.setdefault('first', '')
+        record.setdefault('created', 'no')
+        record.setdefault('last', 'no')
+
         ret.append("<tr>")
         ret.append("<td>" + cgi.escape(str(record['first']) + " " + str(record['last'])) + "</td>")
         ret.append("<td>" + cgi.escape(str(record['created'])) + "</td>")
