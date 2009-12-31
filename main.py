@@ -91,11 +91,12 @@ class Paid(webapp.RequestHandler):
 class MainPage(webapp.RequestHandler):
     #paypal = "http://google.com"
     def get(self):
-        import form
-        #self.response.headers['Content-Type'] = 'text/html'
-        #self.response.out.write('Hello, webapp World!')
-        self.response.out.write(form.just_form())        
-        #self.response.out.write(pages.test_form())
+        #import form
+        ##self.response.headers['Content-Type'] = 'text/html'
+        ##self.response.out.write('Hello, webapp World!')
+        #self.response.out.write(form.just_form())        
+        ##self.response.out.write(pages.test_form())
+        self.redirect("http://timetoblossom.com")
     def post(self):
         util.start_session(self)##
         posts = myweb.get_post_vars()

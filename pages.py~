@@ -46,7 +46,7 @@ def buy_now(payment):
     <img src="http://www.timetoblossom.com/images/timetoblossom_99.gif" />
     <div>
         If you would like to pay by check:  Make it payable to Time to Blossom and mail to
-        <blockquote>Time to Blossom 2251 N. 32nd St. #17 <br /> Mesa Az. 85213 </blockquote>
+        <blockquote>Time to Blossom <br /> 2251 N. 32nd St. #17 <br /> Mesa Az. 85213 </blockquote>
         If you would like to pay by credit card or paypal hit this button
     </div>
     <!--<a href="http://www.timetoblossom.com/pages/pay.htm">Redirecting to PayPal</a>-->

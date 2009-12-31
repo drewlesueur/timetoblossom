@@ -76,6 +76,7 @@ def buy_now(payment):
 def key_subset(obj, arr):
     ret = {}    
     for x in arr:
+        obj.setdefault(x, '')        
         ret[x] = obj[x]
     return ret
 
