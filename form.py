@@ -245,7 +245,7 @@ I understand that participants will be sent home if any drugs, alcohol, or cigar
 
 def form(row):
     return """<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
-<script src="http://gist.github.com/raw/256759/15a5ba42e7f70bbc7c459064501cb964c706de99/jquery-json.js"></script>""" + just_form() + """<input type = "submit" value = "Submit">
+<script src="http://gist.github.com/raw/256759/15a5ba42e7f70bbc7c459064501cb964c706de99/jquery-json.js"></script>""" + " some fields might replace &amp; with &amp;amp; and &lt; with &amp;lt; etc. " + just_form() + """<input type = "submit" value = "Submit">
 </form>""" + "<div id = 'row' style='display:none;'>" + simplejson.dumps(row, indent = 4) + "</div>" + """
 <script>
 $(document).ready(function(){

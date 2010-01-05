@@ -75,17 +75,17 @@ class Paid(webapp.RequestHandler):
         session = util.get_session(self)
         if ('key' in session):
             form = datastore.Get(session['key'])
-        if 'email' in session:
-            self.response.out.write(session['email'])
-            mailed = free_email.blue_email(settings.from_email, session['email'] + ", " + settings.to_email, settings.thank_you_subject, settings.thank_you_body)
-            if mailed:
-                form['email_sent'] = 'yes'
+            if 'email' in session:
+                self.response.out.write(session['email'])
+                mailed = free_email.blue_email(settings.from_email, session['email'] + ", " + settings.to_email, settings.thank_you_subject, settings.thank_you_body)
+                if mailed:
+                    form['email_sent'] = 'yes'
+                else:
+                    form['email_sent'] = 'no'        
             else:
-                form['email_sent'] = 'no'        
-        else:
-            form['email_sent'] = 'no'
-            self.response.out.write("Thank you")
-        datastore.Put(form)        
+                form['email_sent'] = 'no'
+                self.response.out.write("Thank you")
+            datastore.Put(form)        
         self.redirect(settings.thank_you_url)
 
 class MainPage(webapp.RequestHandler):
