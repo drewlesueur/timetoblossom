@@ -86,7 +86,7 @@ class Paid(webapp.RequestHandler):
                 form['email_sent'] = 'no'
                 self.response.out.write("Thank you")
             datastore.Put(form)        
-            self.redirect(settings.thank_you_url)
+        self.redirect(settings.thank_you_url)
 
 class MainPage(webapp.RequestHandler):
     #paypal = "http://google.com"

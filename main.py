@@ -79,7 +79,7 @@ class Paid(webapp.RequestHandler):
                 self.response.out.write(session['email'])
                 mailed = free_email.blue_email(settings.from_email, session['email'] + ", " + settings.to_email, settings.thank_you_subject, settings.thank_you_body)
                 if mailed:
-                    form['email_sent'] = 'yes'
+                    form['email_sent'] = 'maybe'
                 else:
                     form['email_sent'] = 'no'        
             else:
